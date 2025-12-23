@@ -2,7 +2,9 @@ Overview
 
 CoffeeGo is a full-stack web application developed as a graduation project.
 The system allows users to order coffee online, interact in real-time, and receive AI-powered product consultation and support using Gemini AI for any CoffeeGo-related questions. Administrators have a comprehensive dashboard to manage the entire platform efficiently.
+
 Key Features
+
 👤 User
 User authentication & authorization (JWT)
 Online coffee ordering
