@@ -15,7 +15,7 @@ export default function CarouselBlogRelated({ dataBlogRelated, categorySlug }) {
           prevEl: ".swiper-button-prev-custom",
         }}
         spaceBetween={20}
-        slidesPerView={4}
+        slidesPerView={1}
         slidesPerGroup={1} // mỗi lần click chỉ trượt 1
         slidesPerGroupSkip={0} // không bỏ qua slide nào
         watchSlidesProgress={true} // giúp điều khiển mượt

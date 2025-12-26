@@ -47,12 +47,10 @@ const BlogDetailPage = () => {
                 </span>
               </div>
 
-              {/* Title */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 text-center leading-tight px-4">
                 {dataBlog.title}
               </h1>
 
-              {/* Featured Image */}
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <img
                   src={dataBlog.images[0]}
@@ -61,9 +59,7 @@ const BlogDetailPage = () => {
                 />
               </div>
 
-              {/* Content Section */}
               <div className="prose prose-lg max-w-none space-y-8 mt-12">
-                {/* Intro */}
                 <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
                   {dataBlog.content.intro.highlight && (
                     <div className="flex items-start gap-3 mb-4">
@@ -133,7 +129,6 @@ const BlogDetailPage = () => {
             </article>
           </div>
 
-          {/* Related Blogs Section - Full Width */}
           <div className="w-full mt-16 pt-12 border-t border-gray-200 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
               <BlogsRelatedSection dataBlogId={dataBlog._id} />
