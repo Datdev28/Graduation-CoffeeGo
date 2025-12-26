@@ -22,7 +22,6 @@ const BestSellerSection = () => {
     };
     getTopSellingProducts();
   }, []);
-  console.log("products", products);
   return (
     <div className="flex flex-col px-20 max-lg:px-4 w-full bg-gradient-to-t bg-yellow-100 to-white">
       <div className="w-full flex justify-center">

@@ -6,7 +6,6 @@ const recipeApi = {
     return res.data;
   },
   create: async (data) => {
-    console.log(data);
     const res = await axiosClient.post("/recipes", data);
     return res.data;
   },

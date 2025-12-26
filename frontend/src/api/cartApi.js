@@ -6,7 +6,6 @@ const cartApi = {
     return res.data;
   },
   addToCart: async (id, data) => {
-    console.log(data);
     const res = await axiosClient.post(`/carts/${id}`, data);
     return res.data;
   },

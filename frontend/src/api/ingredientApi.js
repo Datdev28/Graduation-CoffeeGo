@@ -6,7 +6,6 @@ const ingredientApi = {
     return res.data;
   },
   create: async (data) => {
-    console.log(data);
     const res = await axiosClient.post("/ingredients", data);
     return res.data;
   },

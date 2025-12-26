@@ -18,7 +18,6 @@ export default function Contacts() {
     const fetchContacts = async () => {
       try {
         const data = await contactApi.getAllByRouter(getContactByRouter);
-        console.log(data);
         setContacts(data);
       } catch (err) {
         toast.error("Lỗi lấy lời nhắn khách hàng:", err);

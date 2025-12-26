@@ -53,7 +53,6 @@ const scheduleOrderCancellation = async (orderId) => {
         order.paymentStatus = "FAILED";
         await order.save({ session });
         await session.commitTransaction();
-        console.log(`Order ${orderId} đã tự động hủy và hoàn nguyên liệu`);
       } else {
         await session.abortTransaction();
       }

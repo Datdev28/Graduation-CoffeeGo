@@ -13,7 +13,6 @@ const ModalDetailProductSelling = ({
   setIsOpenModalDetailProduct,
   selectedProduct,
 }) => {
-  console.log("selectedProduct", selectedProduct);
   useLockBodyScroll(isOpenModalDetailProduct)
   const navigate = useNavigate();
   const { user } = useAuthStore();

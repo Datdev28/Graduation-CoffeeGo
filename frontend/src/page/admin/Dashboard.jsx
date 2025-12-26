@@ -74,11 +74,7 @@ export default function Dashboard() {
   const loadDashboardData = async (filterApplied = isFilterApplied, filter = dateFilter, currentPeriod = period) => {
     try {
       setLoading(true);
-      // LUÔN gửi startDate và endDate, giống Orders
       const params = filterApplied ? filter : { startDate: today, endDate: today };
-      
-      console.log('Dashboard params:', params);
-      console.log('Today:', today);
 
       const [overviewRes, revenueRes, topProductsRes, orderTypeRes, statusRes] =
         await Promise.all([
@@ -88,9 +84,6 @@ export default function Dashboard() {
           dashboardApi.getOrderType(params.startDate, params.endDate),
           dashboardApi.getOrderStatus(params.startDate, params.endDate),
         ]);
-      
-      console.log('Overview response:', overviewRes);
-
       setOverview(overviewRes);
       setRevenueData(revenueRes.data || []);
       setTopProducts(topProductsRes || []);
@@ -103,10 +96,6 @@ export default function Dashboard() {
     }
   };
 
-  const handlePeriodChange = (newPeriod) => {
-    setPeriod(newPeriod);
-    loadDashboardData(isFilterApplied, dateFilter, newPeriod);
-  };
 
   const handleDateChange = (field, value) => {
     // Kiểm tra không được chọn ngày tương lai

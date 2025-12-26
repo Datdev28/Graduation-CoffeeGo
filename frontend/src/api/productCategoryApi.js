@@ -6,7 +6,6 @@ const blogCategoryApi = {
     return res.data;
   },
   create: async (data) => {
-    console.log(data);
     const res = await axiosClient.post("/product-categories", data);
     return res.data;
   },

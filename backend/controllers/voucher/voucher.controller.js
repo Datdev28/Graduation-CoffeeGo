@@ -191,7 +191,6 @@ export const calculateVoucherDiscount = async ({
   const voucher = await Voucher.findOne({ code: voucherCode });
   if (!voucher) throw new Error("Voucher không tồn tại");
   if (voucher.status !== "active") throw new Error("Voucher không khả dụng");
-  console.log(items);
   const now = new Date();
   if (now < new Date(voucher.startDate))
     throw new Error("Voucher chưa đến hạn");

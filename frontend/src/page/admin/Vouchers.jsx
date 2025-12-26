@@ -39,7 +39,6 @@ export default function Vouchers() {
     document.title = "Quản lý voucher";
   }, []);
   const handleClickDeactivateVoucher = async (voucherId) => {
-    console.log(voucherId);
     try {
       const res = await voucherApi.deactivateVoucher(voucherId);
       setVouchers((prev) =>

@@ -14,8 +14,6 @@ const ContactPage = () => {
       document.title = `Liên hệ chúng tôi`;
   }, []);
  const onSubmit = async (data) => {
-  console.log(data);
-  
   try {
     await contactApi.createContact(data)
     Swal.fire({

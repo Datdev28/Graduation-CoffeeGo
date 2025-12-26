@@ -221,6 +221,5 @@ export const completeOrder = async (req, res) => {
     res.json(updatedOrder);
   } catch (err) {
     res.status(500).json({ message: "Xác nhận hoàn thành đơn hàng thất bại" });
-    console.log(err);
   }
 };

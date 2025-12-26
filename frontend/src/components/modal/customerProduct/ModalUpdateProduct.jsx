@@ -37,7 +37,6 @@ const ModalUpdateProduct = ({
       setCount((prev) => prev - 1);
     }
   };
-  console.log(itemUpdate);
   const handleClickUpdate = async() => {
     try {
       const updateData = {
@@ -45,7 +44,6 @@ const ModalUpdateProduct = ({
         quantity: count,
         note
       }
-      console.log(updateData);
       await cartApi.updateCartItem(user.id, updateData);
       toast.success("Cập nhật sản phẩm thành công");
       const cartUpdate = cart.map((item) => item.productId._id === itemUpdate.productId._id ? {...item, note: note, quantity: count} : item)
