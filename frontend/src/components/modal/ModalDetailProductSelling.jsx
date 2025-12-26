@@ -21,7 +21,7 @@ const ModalDetailProductSelling = ({
   const handleClickAddToCart = async () => {
     try {
       if (!user) {
-        navigate("/login");
+        navigate("/account/login");
       }
       const data = {
         productId: selectedProduct._id,
