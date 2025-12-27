@@ -151,7 +151,9 @@ export default function Reservations() {
 
   // Confirm reservation
   const handleConfirm = async () => {
+    if(loading) return
     try {
+      setLoading(true);
       const res = await reservationApi.confirm(selectedReservation._id);
       setReservations((prev) => prev.map((r) => (r._id === res._id ? res : r)));
       toast.success("Xác nhận lịch hẹn thành công");
@@ -160,12 +162,14 @@ export default function Reservations() {
     } finally {
       setIsOpenConfirm(false);
       setSelectedReservation(null);
+      setLoading(false);
     }
   };
 
-  // Cancel reservation
   const handleCancel = async () => {
+    if(loading) return
     try {
+      setLoading(true);
       const res = await reservationApi.cancel(selectedReservation._id);
       setReservations((prev) => prev.map((r) => (r._id === res._id ? res : r)));
       toast.success("Đã hủy lịch hẹn");
@@ -174,12 +178,14 @@ export default function Reservations() {
     } finally {
       setIsOpenCancel(false);
       setSelectedReservation(null);
+      setLoading(false)
     }
   };
 
-  // Delete reservation
   const handleDelete = async () => {
+    if(loading) return
     try {
+      setLoading(true);
       await reservationApi.delete(selectedReservation._id);
       setReservations((prev) =>
         prev.filter((r) => r._id !== selectedReservation._id)
@@ -190,6 +196,7 @@ export default function Reservations() {
     } finally {
       setIsOpenDelete(false);
       setSelectedReservation(null);
+      setLoading(false);
     }
   };
 
