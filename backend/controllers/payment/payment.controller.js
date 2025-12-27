@@ -164,7 +164,8 @@ export const createPayment = async (req, res) => {
         if (!ingredientAfterUpdate) {
           await session.abortTransaction();
           return res.status(400).json({
-            message: "Kho không đủ nguyên liệu hoặc nguyên liệu đã ngừng hoạt động",
+            message:
+              "Kho không đủ nguyên liệu hoặc nguyên liệu đã ngừng hoạt động",
           });
         }
 
@@ -185,7 +186,7 @@ export const createPayment = async (req, res) => {
         phone: delivery.phone,
         address: delivery.address || null,
         note: delivery.note || "",
-        deliveryTime: delivery.deliveryTime || "Càng sớm càng tốt", 
+        deliveryTime: delivery.deliveryTime || "Càng sớm càng tốt",
       },
       orderType: "ONLINE",
       paymentMethod: "VNPAY",
@@ -230,14 +231,14 @@ export const createPayment = async (req, res) => {
 export const handleVnpayReturn = async (req, res) => {
   const session = await mongoose.startSession();
   session.startTransaction();
-
+  const CLIENT_URL = "https://coffeego.vercel.app";
   try {
     const verify = vnpay.verifyReturnUrl(req.query);
 
     if (!verify.isVerified) {
       await session.abortTransaction();
       return res.redirect(
-        `http://localhost:5173/payment-result?status=error&code=97&message=${encodeURIComponent(
+        `${CLIENT_URL}/payment-result?status=error&code=97&message=${encodeURIComponent(
           "Chữ ký không hợp lệ"
         )}`
       );
@@ -249,7 +250,7 @@ export const handleVnpayReturn = async (req, res) => {
     if (orderCancle.status === "CANCELLED") {
       await session.abortTransaction();
       return res.redirect(
-        `http://localhost:5173/payment-result?&orderId=${orderCancle._id}`
+        `${CLIENT_URL}/payment-result?orderId=${orderCancle._id}`
       );
     }
 
@@ -257,7 +258,7 @@ export const handleVnpayReturn = async (req, res) => {
     if (!order) {
       await session.abortTransaction();
       return res.redirect(
-        `http://localhost:5173/payment-result?status=error&code=01&message=${encodeURIComponent(
+        `${CLIENT_URL}/payment-result?status=error&code=01&message=${encodeURIComponent(
           "Không tìm thấy đơn hàng"
         )}`
       );
@@ -289,9 +290,7 @@ export const handleVnpayReturn = async (req, res) => {
 
       await session.commitTransaction();
 
-      return res.redirect(
-        `http://localhost:5173/payment-result?orderId=${order._id}`
-      );
+      return res.redirect(`${CLIENT_URL}/payment-result?orderId=${order._id}`);
     }
 
     // thanh toán thành công
@@ -319,13 +318,11 @@ export const handleVnpayReturn = async (req, res) => {
     await order.save({ session });
     await session.commitTransaction();
 
-    return res.redirect(
-      `http://localhost:5173/payment-result?&orderId=${order._id}`
-    );
+    return res.redirect(`${CLIENT_URL}/payment-result?orderId=${order._id}`);
   } catch (err) {
     await session.abortTransaction();
     return res.redirect(
-      `http://localhost:5173/payment-result?status=error&message=${encodeURIComponent(
+      `${CLIENT_URL}/payment-result?status=error&message=${encodeURIComponent(
         "Xử lý callback thất bại"
       )}`
     );
