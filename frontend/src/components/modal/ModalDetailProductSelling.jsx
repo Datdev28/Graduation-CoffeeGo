@@ -65,7 +65,7 @@ const ModalDetailProductSelling = ({
           border: "none",
           background: "white",
           borderRadius: "1rem",
-          maxHeight: "90vh", // ✅ THÊM DÒNG NÀY
+          maxHeight: "90vh", 
           width: "90%",
           maxWidth: "1200px",
           boxShadow:

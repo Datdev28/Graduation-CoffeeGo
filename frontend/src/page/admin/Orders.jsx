@@ -122,7 +122,6 @@ export default function Orders() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, []);
 
-  // Filter và sort orders dùng useMemo
   const filteredOrders = useMemo(() => {
     return orders
       .filter((order) => {
@@ -141,7 +140,6 @@ export default function Orders() {
       });
   }, [orders, statusFilter, orderTypeFilter, paymentFilter, sortOrder]);
 
-  // Đếm số lượng theo trạng thái
   const statusCounts = {
     ALL: orders.length,
     PROCESSING: orders.filter((o) => o.status === "PROCESSING").length,
@@ -150,6 +148,7 @@ export default function Orders() {
   };
 
   const handleCompleteOrder = async (orderId) => {
+    if(loading) return
     try {
       const res = await orderApi.completeOrder(orderId);
       setOrders((prev) =>
@@ -160,6 +159,7 @@ export default function Orders() {
       toast.error(err.response?.data?.message || "Lỗi khi cập nhật trạng thái");
     } finally {
       setIsOpenConfirmComplete(false);
+      setLoading(false);
     }
   };
 
@@ -196,7 +196,7 @@ export default function Orders() {
       }
       case "month": {
         const m = new Date(today);
-        m.setDate(today.getDate() - 30); // chính xác 30 ngày
+        m.setDate(today.getDate() - 30); 
         const str = `${m.getFullYear()}-${String(m.getMonth() + 1).padStart(
           2,
           "0"
