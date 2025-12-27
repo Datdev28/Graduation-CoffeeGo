@@ -132,7 +132,7 @@ const MenuPage = () => {
                   alt={product.name}
                 />
                 <div className="space-y-4">
-                  <p className="text-lg truncate">{product.name}</p>
+                  <p className="text-lg whitespace-break-spaces">{product.name}</p>
                   <div className="flex items-center gap-4 text-lg">
                     {product.discount > 0 && (
                       <span className="line-through text-gray-400">
