@@ -150,6 +150,7 @@ export default function Orders() {
   const handleCompleteOrder = async (orderId) => {
     if(loading) return
     try {
+      setLoading(true);
       const res = await orderApi.completeOrder(orderId);
       setOrders((prev) =>
         prev.map((o) => (o._id === orderId ? { ...o, status: res.status } : o))
