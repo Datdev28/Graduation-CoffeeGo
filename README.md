@@ -52,3 +52,8 @@ System statistics (orders, revenue, user activities)
 Manage vouchers
 
 Manage messages/contact requests
+
+Tài khoản admin
+
+email: nguyenquangdat2842003@gmail.com
+mk: 12312312
