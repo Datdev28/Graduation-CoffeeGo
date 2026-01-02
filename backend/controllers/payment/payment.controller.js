@@ -297,7 +297,7 @@ export const handleVnpayReturn = async (req, res) => {
     }
 
     order.paymentStatus = "SUCCESS";
-    order.status = "COMPLETED";
+    order.status = "PROCESSING";
     order.vnp_TransactionNo = verify.vnp_TransactionNo;
     order.vnp_Amount = verify.vnp_Amount;
     order.vnp_PayDate = verify.vnp_PayDate;
