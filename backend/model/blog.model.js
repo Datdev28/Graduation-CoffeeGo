@@ -1,0 +1,43 @@
+import mongoose from "mongoose";
+import slugify from "slugify"; 
+
+const blogSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true, trim: true, unique: true},
+    slug: { type: String, trim: true, unique: true },
+
+    categoryId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogCategory",
+      required: true,
+    },
+
+    images: [{ type: String, trim: true, require: true }],
+
+    content: {
+      intro: {
+        text: { type: String, required: true, trim: true },
+        highlight: { type: String, trim: true },
+      },
+      body: {
+        text: { type: String, required: true, trim: true },
+        highlight: { type: String, trim: true },
+      },
+      conclusion: {
+        text: { type: String, required: true, trim: true },
+        highlight: { type: String, trim: true },
+      },
+    },
+  },
+  { timestamps: true }
+);
+
+blogSchema.pre("save", function (next) {
+  if (this.isModified("title")) {
+    this.slug = slugify(this.title, { lower: true, strict: true, locale: "vi" });
+  }
+  next();
+});
+
+const Blog = mongoose.model("Blog", blogSchema);
+export default Blog
