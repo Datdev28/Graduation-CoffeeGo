@@ -49,7 +49,7 @@ export default function Orders() {
 
   // Socket setup 
   useEffect(() => {
-    const socket = io("https://coffee-go.onrender.com");
+    const socket = io("http://localhost:5000");
 
     socket.on("connect", () => {
       socket.emit("join_admin");
