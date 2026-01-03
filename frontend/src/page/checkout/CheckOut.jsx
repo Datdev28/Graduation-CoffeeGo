@@ -20,7 +20,7 @@ const CheckOut = () => {
   const { user } = useAuthStore();
   const [timeSlots, setTimeSlots] = useState([]);
   const [receiveMethod, setReceiveMethod] = useState("delivery");
-  const [selectedTime, setSelectedTime] = useState(""); // THÊM STATE NÀY
+  const [selectedTime, setSelectedTime] = useState(""); 
   const { cart, setCart } = useCartStore();
   const [itemUpdate, setItemUpdate] = useState();
   const [isOpenModalUpdateItem, setIsOpenModalUpdateItem] = useState(false);
@@ -28,6 +28,7 @@ const CheckOut = () => {
   const [error, setError] = useState("");
   const [discount, setDiscount] = useState(0);
   const [voucherUsed, setVoucherUsed] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const {
     register,
@@ -134,8 +135,9 @@ const CheckOut = () => {
   };
 
   const handleClickOrder = async (data) => {
-      console.error("Lỗi khi đặt hàng:", error);
+    if(isLoading) return
     try {
+      setIsLoading(true);
       const orderData = {
         cartItems: cart.map((item) => ({
           productId: item.productId._id,
@@ -153,12 +155,13 @@ const CheckOut = () => {
         userId: user.id,
       };
       const response = await paymentApi.createPayment(orderData);
-      console.log("FIX VNPAY");
       if (response.success && response.vnpUrl) {
         window.location.href = response.vnpUrl;
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Đặt hàng thất bại!");
+    } finally {
+      setIsLoading(false);
     }
   };
 
