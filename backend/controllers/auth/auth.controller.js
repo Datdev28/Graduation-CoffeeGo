@@ -121,7 +121,7 @@ export const forgotPassword = async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-    const resetLink = `https://coffeego.vercel.app/reset-password?token=${resetToken}`;
+    const resetLink = `https://coffeego.vercel.app/account/reset-password?token=${resetToken}`;
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
